@@ -23,7 +23,7 @@ public class Contact implements ICallActions {
     }
 
     public String getSurnames() {
-        return getSurname();
+        return this.getSurname();
     }
 
     public String getPhone() {

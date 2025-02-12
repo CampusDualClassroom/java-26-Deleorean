@@ -13,7 +13,7 @@ public class Phonebook {
     }
 
     public Map<String, Contact> getPhoneBook() {
-        return phoneBook;
+        return this.phoneBook;
     }
 
     //Getter //Funcionalidad del Test
@@ -43,16 +43,11 @@ public class Phonebook {
     //Eliminar contacto
     public void deleteContact(String code) {
         Contact contactToDelete = phoneBook.get(code);
-
-        if (contactToDelete == null) {
-            System.out.println("No existe un contacto con el código introducido.\n");
-        } else {
+        if (contactToDelete != null) {
             phoneBook.remove(code);
             System.out.println("Contacto " + contactToDelete.getName() + " borrado.\n\n");
-
         }
     }
-
 
     //Mostrar contacto
     public void showPhonebook() {
@@ -92,8 +87,7 @@ public class Phonebook {
                     contact.callMyNumber();
                     break;
                 case 2:
-                    String numero = Utils.string("Introduce el número al que quieres llamar: ");
-                    contact.callOtherNumber(numero);
+                    contact.callOtherNumber(Utils.string("Introduce el número al que quieres llamar: "));
                     break;
                 case 3:
                     contact.showContactDetails();
@@ -121,25 +115,21 @@ public class Phonebook {
 
             switch (choice) {
                 case 1:
-                    String name = Utils.string("Introduce el nombre:\n");
-
-                    String surname = Utils.string("Introduce el/los apellido/s:\n");
-
-                    String number = Utils.string("Introduce el número de teléfono:\n");
-
-                    addContact(name, surname, number);
+                    addContact(
+                            Utils.string("Introduce el nombre:\n"),
+                            Utils.string("Introduce el/los apellido/s:\n"),
+                            Utils.string("Introduce el número de teléfono:\n")
+                    );
                     break;
                 case 2:
-                    String code = Utils.string("Introduce el código del contacto a eliminar:\n");
-                    deleteContact(code);
+                    deleteContact(Utils.string("Introduce el código del contacto a eliminar:\n"));
                     break;
                 case 3:
                     System.out.println("Mostrando contactos de la agenda:\n");
                     showPhonebook();
                     break;
                 case 4:
-                    code = Utils.string("Introduce el código del contacto que deseas seleccionar:\n");
-                    selectContact(code);
+                    selectContact(Utils.string("Introduce el código del contacto que deseas seleccionar:\n"));
                     break;
                 case 5:
                     System.out.println("Cerrando agenda...\n");
